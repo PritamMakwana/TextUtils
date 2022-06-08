@@ -6,12 +6,14 @@ export default function TextForm(props) {
         // console.log("uppercase  was clicked " + text)
         let newText = text.toUpperCase();
         setText(newText)
+        props.showAlert("convert to Upper Case", "success");
     }
 
     const headleLoClick = () => {
         // console.log("lowerCase  was clicked " + text)
         let newText = text.toLowerCase();
         setText(newText)
+        props.showAlert("convert to Lower Case", "success");
     }
 
     const headleInitClick = () => {
@@ -20,12 +22,14 @@ export default function TextForm(props) {
             return m.toUpperCase();
         });
         setText(newText)
+        props.showAlert("convert to Capitalize Word", "success");
     }
 
     const speak = () => {
         let msg = new SpeechSynthesisUtterance();
         msg.text = text;
         window.speechSynthesis.speak(msg);
+        props.showAlert(" Speak a Data", "success");
     }
 
 
@@ -33,6 +37,7 @@ export default function TextForm(props) {
         let newText = '';
         setText(newText)
         console.log("clear: " + text);
+        props.showAlert("All clear", "success");
     }
 
 
@@ -44,6 +49,7 @@ export default function TextForm(props) {
     const headleExtraSpaces = () => {
         let newText = text.split(/[ ]+/)
         setText(newText.join(" "))
+        props.showAlert("Remove Extra Spaces", "success");
     }
 
 
