@@ -61,26 +61,27 @@ export default function TextForm(props) {
 
     return (
         <>
-            <div className="container" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
-                <h1>{props.heading}</h1>
+            <div className="container " style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
+                <h1 className='mb-4'>{props.heading}</h1>
                 <div className="mb-3">
-                    <textarea className="form-control" value={text} onChange={headleOnChange} id="myBox" rows="8" style={{ backgroundColor: props.mode === 'dark' ? 'grey' : 'white', color: props.mode === 'dark' ? 'white' : '#042743' }}></textarea>
+                    <textarea className="form-control" value={text} onChange={headleOnChange} id="myBox" rows="8" 
+                    style={{ backgroundColor: props.mode === 'dark' ? '#13466e' : 'white', color: props.mode === 'dark' ? 'white' : '#042743' }}></textarea>
                 </div>
-                <button className="btn btn-primary mx-3" onClick={headleUpClick}>Uppercase</button>
-                <button className="btn btn-primary mx-3" onClick={headleLoClick}>Lowercase</button>
-                <button className="btn btn-primary mx-3" onClick={headleInitClick}>Capitalize Word</button>
-                <button type="submit" onClick={speak} className="btn btn-primary mx-3">Speak</button>
-                <button className="btn btn-primary mx-3 " onClick={headleExtraSpaces}>Remove Extra Spaces</button>
-                <button className="btn btn-primary mx-3 " onClick={headleclearClick}>All Clear</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-3 my-3" onClick={headleLoClick}>Lowercase</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-3 my-3" onClick={headleInitClick}>Capitalize Word</button>
+                <button disabled={text.length===0} type="submit" onClick={speak} className="btn btn-primary mx-3 my-3">Speak</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-3 my-3 " onClick={headleExtraSpaces}>Remove Extra Spaces</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-3 my-3 " onClick={headleclearClick}>All Clear</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-3 my-3" onClick={headleUpClick}>Uppercase</button>
 
             </div>
 
             <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
                 <h2>Your Text Summary</h2>
-                <p>{text.split(" ").length} words and {text.length} characters</p>
-                <p>{0.008 * text.split(" ").length} Minutes read</p>
+                <p>{text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} words and {text.length} characters</p>
+                <p>{0.008 * text.split(" ").filter((element) => { return element.length !== 0 }).length} Minutes read</p>
                 <h2>Preview</h2>
-                <p className="preview">{text.length > 0 ? text : "Enter something in the textbox above to preview it here"}</p>
+                <p className="preview">{text.length > 0 ? text : "Nothing to preview!"}</p>
 
 
             </div>
